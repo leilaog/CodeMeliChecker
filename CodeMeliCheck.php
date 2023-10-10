@@ -1,4 +1,5 @@
 <?php
+$message = "<p>کد ملی را وارد کنید</p>";
 if (isset($_POST["codemeli"])) {
     $codemelis = str_split($_POST["codemeli"]);
     $sum = 0;
@@ -8,9 +9,9 @@ if (isset($_POST["codemeli"])) {
     $sum = $sum - $codemelis[9];
     $calculate = $sum % 11;
     if ((($calculate < 2) && ($calculate == $codemelis[9])) || (($calculate > 2) && ($calculate == (11 - $codemelis[9])))) {
-        echo ('<p  style="color:green;">کد ملی ' . $_POST["codemeli"] . ' معتبر است</p>');
+        $message = '<p  style="color:green;">کد ملی ' . $_POST["codemeli"] . ' معتبر است</p>';
     } else {
-        echo ('<p  style="color:red;">' . $_POST["codemeli"] . ' یک کد ملی نا معتبر است</p>');
+        $message = '<p  style="color:red;">' . $_POST["codemeli"] . ' یک کد ملی نا معتبر است</p>';
     }
 }
 ?>
@@ -24,11 +25,13 @@ if (isset($_POST["codemeli"])) {
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <br />
     <form action="CodeMeliCheck.php" method="POST">
+        <label> <?php echo $message ?></label>
         <label for="codemeli">
             کد ملی
         </label>
